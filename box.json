@@ -1,0 +1,35 @@
+{
+    "name":"cbBolt",
+    "version":"1.0.0",
+    "author":"Grant Copley",
+    "location":"forgeboxStorage",
+    "homepage":"https://github.com/grantcopley/cbbolt",
+    "documentation":"https://github.com/grantcopley/cbbolt",
+    "repository":{
+        "type":"git",
+        "URL":"https://github.com/grantcopley/cbbolt"
+    },
+    "bugs":"https://github.com/grantcopley/cbbolt/issues",
+    "slug":"cbBolt",
+    "shortDescription":"",
+    "description":"",
+    "type":"modules",
+    "dependencies":{},
+    "devDependencies":{
+        "coldbox":"stable",
+        "testbox":"^2.4.0+80"
+    },
+    "installPaths":{
+        "testbox":"testbox/",
+        "coldbox":"tests/resources/app/coldbox/"
+    },
+    "scripts":{
+        "format":"cfformat run helpers/**/*.cfc,interceptors/**/*.cfc,models/**/*.cfc,tests/specs/**/*.cfc --overwrite",
+        "format:check":"cfformat check helpers/**/*.cfc,interceptors/**/*.cfc,models/**/*.cfc,tests/specs/**/*.cfc"
+    },
+    "ignore":[
+        "**/.*",
+        "test",
+        "tests"
+    ]
+}
