@@ -2,14 +2,15 @@ component extends="coldbox.system.testing.BaseTestCase" {
 
     function beforeAll() {
         super.beforeAll();
-        
-        getController().getModuleService()
+
+        getController()
+            .getModuleService()
             .registerAndActivateModule( "cbLivewire", "testingModuleRoot" );
     }
 
     /**
-    * @beforeEach
-    */
+     * @beforeEach
+     */
     function setupIntegrationTest() {
         setup();
     }

@@ -1,4 +1,4 @@
-  component {
+component {
 
     this.name = "cbLivewire";
     this.version = "1.0.0";
@@ -21,9 +21,7 @@
                 return "";
             }
         };
-        routes = [
-            {pattern="/", handler="Welcome", action="index"}
-        ];
+        routes = [ { pattern: "/", handler: "Welcome", action: "index" } ];
     }
 
     function onLoad() {
@@ -74,7 +72,9 @@
         if ( settings.register.interceptor ) {
             controller
                 .getInterceptorService()
-                .unregister( interceptorName = "cbLivewireLifecycleInterceptor" );
+                .unregister(
+                    interceptorName = "cbLivewireLifecycleInterceptor"
+                );
         }
 
         if ( settings.register.controllerMethods ) {
