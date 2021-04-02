@@ -1,11 +1,13 @@
   component {
 
-    this.name = "cbWire";
+    this.name = "cbLivewire";
     this.version = "1.0.0";
     this.author = "Grant Copley";
     this.webUrl = "https://github.com/grantcopley/cbLivewire";
     this.dependencies = [];
     this.entryPoint = "/livewire";
+    this.layoutParentLookup = false;
+    this.viewParentLookup = false;
 
     function configure() {
         settings = {
@@ -19,6 +21,11 @@
                 return "";
             }
         };
+        routes = [
+            {pattern="/", handler="Welcome", action="index"},
+            {pattern="/:year-numeric/:month-numeric?", handler="blog", action="showPosts"},
+            {pattern="/comment/:action", handler="comments"}
+        ];
     }
 
     function onLoad() {
