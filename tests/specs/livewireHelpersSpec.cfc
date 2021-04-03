@@ -15,6 +15,14 @@ component extends="tests.resources.ModuleIntegrationSpec" appMapping="/app" {
                     expect( result ).toInclude( "</style>" );
                 } );
             } );
+
+            describe( "livewireScrpts() method", function() {
+                it( "returns the livewire scripts", function() {
+                    var result = livewireScripts();
+                    expect( result ).toInclude( "<!-- Livewire Scripts -->" );
+                    expect( result ).toInclude( "window.livewire = new Livewire();" );
+                } );
+            } );
         } );
     }
 
