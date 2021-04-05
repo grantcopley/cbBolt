@@ -6,6 +6,8 @@
 </head>
 <body>
 	#livewire( "Counter" )#
+	<br><br>
+	#livewire( "HelloWorld" )#
 	#livewireScripts()#
 </body>
 </html>

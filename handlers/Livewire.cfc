@@ -19,15 +19,15 @@ component {
     /**
     * Renders a livewire component
     */
-    function render( componentName ) {
-        var livewireComponent = wirebox.getInstance( "handlers.cblivewire.#componentName#" );
+    function render( RequestContext event, componentName ) {
+        var livewireComponent = wirebox.getInstance( name="handlers.cblivewire.#componentName#", initArguments={ event=event } );
         return livewireComponent.render();
     }
 
     function handleRequest( event, rc, prc ) {
-        var livewireComponent = wirebox.getInstance( rc.livewireComponent );
+        var livewireComponent = wirebox.getInstance( name=rc.livewireComponent, initArguments={ event=event } );
         livewireComponent.hydrate( rc );
-        return livewireComponent.getSubsequentPayload();
+        return livewireComponent.getSubsequentPayload( rc);
     }
 
 }

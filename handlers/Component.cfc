@@ -1,7 +1,12 @@
 component accessors="true" {
 
+    property name="event";
     property name="wirebox" inject="wirebox";
     property name="initialRendering" default="true";
+
+    function init( required RequestContext event ) {
+        this.setEvent( event );
+    } 
 
     function getId() {
         // match Livewire's 21 characters
@@ -34,9 +39,9 @@ component accessors="true" {
     function getSubsequentPayload() {
         return {
             "effects": {
-                "html": renderView( "cblivewire/counter" ),
+                "html": this.render(),
                 "dirty": [
-                    "count"
+                    "count" // need to fix
                 ]
             },
             "serverMemo": {
@@ -54,7 +59,9 @@ component accessors="true" {
         }, {} );
     }
 
-    function hydrate( context ) {
+    function hydrate() {
+
+        var context = getEvent().getCollection();
 
         setInitialRendering( false );
 
@@ -69,6 +76,10 @@ component accessors="true" {
 
                 if ( thisUpdate.type == "callMethod" ) {
                     this[ thisUpdate["payload"]["method"] ]();
+                }
+
+                if ( thisUpdate.type == "syncInput" ) {
+                    this[ "set" & thisUpdate["payload"]["name"] ]( thisUpdate["payload"]["value"] );
                 }
 
             } );
@@ -87,9 +98,9 @@ component accessors="true" {
         // Add livewire properties to top element to make livewire actually work
         // We will need to make this work with more than just <div>s of course
         if ( getInitialRendering() ) {
-            rendering = rendering.replaceNoCase( "<div ", "<div wire:id=""#getId()#"" wire:initial-data=""#serializeJson( getInitialPayload() ).replace('"', '&quot;', 'all')#"" ", "once" );
+            rendering = rendering.replaceNoCase( "<div", "<div wire:id=""#getId()#"" wire:initial-data=""#serializeJson( getInitialPayload() ).replace('"', '&quot;', 'all')#""", "once" );
         } else {
-            rendering = rendering.replaceNoCase( "<div ", "<div wire:id=""#getId()#"" ", "once" );
+            rendering = rendering.replaceNoCase( "<div", "<div wire:id=""#getId()#""", "once" );
         }
 
         return rendering;

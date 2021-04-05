@@ -18,7 +18,7 @@
     * Renders a livewire component
     */
     function livewire( componentName ) {
-        return getInstance( "cblivewire.handlers.Livewire" ).render( componentName );
+        return getInstance( "cblivewire.handlers.Livewire" ).render( variables.event, componentName );
     }
 
 
